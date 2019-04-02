@@ -27,7 +27,7 @@ class QuizDisplay extends Renderer {
   }
 
   _generateQuestion() {
-    const question = this.model.currentQuestion;
+    const question = this.model.getCurrentQuestion();
     return `
       <div>
         <p>
@@ -51,9 +51,9 @@ class QuizDisplay extends Renderer {
   }
 
   _generateFeedback() {
-    const current = this.model.currentQuestion;
+    const current = this.model.getCurrentQuestion();
     let html = '';
-    if (current.answerStatus === 1) {
+    if (current.getAnswerStatus() === 1) {
       html +=  `
         <div>
           <p>
@@ -116,13 +116,16 @@ class QuizDisplay extends Renderer {
 
   template() {
     let html;
+    const currentQuestion = this.model.getCurrentQuestion();
+    const answerStatus = currentQuestion && currentQuestion.getAnswerStatus();
+    
     if (this.model.asked.length === 0) {
       // Quiz has not started
       html = this._generateIntro();
-    } else if (this.model.active && this.model.currentQuestion.answerStatus === -1) {
+    } else if (this.model.active && answerStatus === -1) {
       // Quiz is active and question unanswered
       html = this._generateQuestion();
-    } else if (this.model.active && this.model.currentQuestion.answerStatus !== -1) {
+    } else if (this.model.active && answerStatus !== -1) {
       // Quiz is active and question answered
       html = this._generateFeedback();
     } else {

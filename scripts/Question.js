@@ -1,21 +1,8 @@
 /* global Model */
 
-/**
- * @interface QuestionData
- * @property {String} question
- */
-
-/** 
- * Class of Question
- * @property {String}    text
- * @property {String[]}  answers
- * @property {String}    correctAnswer
- * @property {String}    userAnswer
- */
 class Question extends Model {         //eslint-disable-line no-unused-vars
-  /**
-   * @param {QuestionData} questionData
-   */
+
+  // Receives API questionData, structures data for Question model 
   constructor(questionData) {
     super();
     this.text = questionData.question;
@@ -47,13 +34,12 @@ class Question extends Model {         //eslint-disable-line no-unused-vars
   }
 
   /**
-   * @member {Number}
-   * @description 
-   * -1: unanswered
-   *  0: incorrect
-   *  1: correct
+   * Returns integer for question status:
+   * -1 = unanswered
+   *  0 = answered, incorrect
+   *  1 = answered, correct
    */
-  get answerStatus() {
+  getAnswerStatus() {
     if (this.userAnswer === null) {
       return -1;
     } else if (this.userAnswer === this.correctAnswer) {
