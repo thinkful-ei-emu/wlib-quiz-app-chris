@@ -20,7 +20,7 @@ const Renderer = function(){
       }
       
       renderers.push(this);
-      this.renderAll();
+      this.render();
     } 
 
     renderAll() {
