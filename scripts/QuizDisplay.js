@@ -137,19 +137,16 @@ class QuizDisplay extends Renderer {
 
   handleStart() {
     this.model.startNewGame();
-    this.model.update();
   }
 
   handleAnswerQuestion(e) {
     e.preventDefault();
     const userAnswer = e.target.answer.value;
     this.model.answerQuestion(userAnswer);
-    this.model.update();
   }
 
   handleContinue() {
     this.model.nextQuestion();
-    this.model.update();
   }
 
 }

@@ -21,7 +21,7 @@ class Quiz extends Model {          // eslint-disable-line no-unused-vars
 
   // Private method
   _getInitialQuestions() {
-    return this.api.fetchQuestions()
+    return this.api.fetchQuestions(Quiz.DEFAULT_QUIZ_LENGTH)
       .then(data => {
         const questions = data.results;
         questions.forEach(question => this.unasked.push(new Question(question)));
@@ -77,10 +77,12 @@ class Quiz extends Model {          // eslint-disable-line no-unused-vars
     if (this.unasked.length === 0) {
       this.active = false;
       this.scoreHistory.unshift(this.score);
+      this.update();
       return null;
     }
     
     this.asked.unshift(this.unasked.pop());
+    this.update();
     return this.asked[0];
   }
 
@@ -104,6 +106,7 @@ class Quiz extends Model {          // eslint-disable-line no-unused-vars
       this._increaseScore();
     }
 
+    this.update();
     return answerStatus === 1;
   }
 
