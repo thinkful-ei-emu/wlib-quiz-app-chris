@@ -1,4 +1,4 @@
-/* global Question, Model */
+/* global Question, Model, TriviaApi */
 
 /* Quiz class */
 class Quiz extends Model {          // eslint-disable-line no-unused-vars
@@ -16,18 +16,16 @@ class Quiz extends Model {          // eslint-disable-line no-unused-vars
     this.score = 0;
     this.scoreHistory = [];
     this.active = false;
+    this.api = new TriviaApi();
   }
 
-  /** Gets unique set of questions from Quiz.QUIZ_DATA */
   // Private method
   _getInitialQuestions() {
-    const totalLength = Quiz.QUIZ_DATA.length;
-    const uniqueQuestionIndexes = new Set();
-    while (uniqueQuestionIndexes.size < Quiz.DEFAULT_QUIZ_LENGTH) {
-      uniqueQuestionIndexes.add(Math.floor(Math.random() * totalLength));
-    }
-
-    uniqueQuestionIndexes.forEach(qIndex => this.unasked.push(new Question(Quiz.QUIZ_DATA[qIndex])));
+    return this.api.fetchQuestions()
+      .then(data => {
+        const questions = data.results;
+        questions.forEach(question => this.unasked.push(new Question(question)));
+      });
   }
 
   // Private method
@@ -60,8 +58,9 @@ class Quiz extends Model {          // eslint-disable-line no-unused-vars
     this.score = 0;
     this.active = true;
 
-    this._getInitialQuestions();
-    this.nextQuestion();
+    this._getInitialQuestions()
+      .then(() => this.nextQuestion())
+      .catch(err => console.log(err));
   }
 
   /**
