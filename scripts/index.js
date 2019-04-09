@@ -4,8 +4,8 @@ let q, quizDisplay, quizStatus;    // eslint-disable-line no-unused-vars
 
 function main() {
   q = new Quiz();
-  new QuizDisplay(q, '.display');
-  new QuizStatus(q, '.status');
+  quizDisplay = new QuizDisplay(q, '.display');
+  quizStatus = new QuizStatus(q, '.status');
 }
 
 $(main);
