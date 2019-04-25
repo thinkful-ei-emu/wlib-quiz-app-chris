@@ -1,7 +1,7 @@
-/* global Question, Model, TriviaApi */
+import Model from './lib/Model';
+import TriviaApi from './TriviaApi';
 
-/* Quiz class */
-class Quiz extends Model {          // eslint-disable-line no-unused-vars
+class Quiz extends Model {
 
   static DEFAULT_QUIZ_LENGTH = 2;
 

@@ -1,6 +1,5 @@
-/* global Renderer */
+import Renderer from './lib/Renderer';
 
-// eslint-disable-next-line no-unused-vars
 class QuizStatus extends Renderer {
   template() {
     const score = this.model.score;
@@ -21,3 +20,5 @@ class QuizStatus extends Renderer {
     `;
   }
 }
+
+export default QuizStatus;

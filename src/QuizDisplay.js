@@ -1,6 +1,5 @@
-/* global Renderer */
+import Renderer from './lib/Renderer';
 
-// eslint-disable-next-line no-unused-vars
 class QuizDisplay extends Renderer {
   getEvents() {
     return {
@@ -150,3 +149,6 @@ class QuizDisplay extends Renderer {
   }
 
 }
+
+export default QuizDisplay;
+

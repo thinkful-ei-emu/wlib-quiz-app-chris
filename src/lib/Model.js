@@ -1,4 +1,4 @@
-class Model {       //eslint-disable-line no-unused-vars
+class Model {
   constructor() {
     if (!Model.viewMap) Model.viewMap = new WeakMap();
     Model.viewMap.set(this, []);
@@ -16,3 +16,5 @@ class Model {       //eslint-disable-line no-unused-vars
     views.forEach(view => view.render());
   }
 }
+
+export default Model;

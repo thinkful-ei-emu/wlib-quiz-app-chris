@@ -9,3 +9,5 @@ class TriviaApi {
       .then(res => res.json());
   }
 }
+
+export default TriviaApi;
