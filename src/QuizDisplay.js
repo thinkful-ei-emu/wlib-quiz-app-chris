@@ -1,14 +1,14 @@
 import Renderer from './lib/Renderer';
 
 class QuizDisplay extends Renderer {
+  // TASK: You will need to register all your events in this method
   getEvents() {
     return {
       'click .start-quiz': 'handleStart',
-      'submit .answer-form': 'handleAnswerQuestion',
-      'click .continue': 'handleContinue',
     };
   }
 
+  // TASK: This is one example generator function. You will need one for all templates
   _generateIntro() {
     return `
       <div>
@@ -25,129 +25,22 @@ class QuizDisplay extends Renderer {
     `;
   }
 
-  _generateQuestion() {
-    const question = this.model.getCurrentQuestion();
-    return `
-      <div>
-        <p>
-          ${question.text}
-        </p>
-        <form class="answer-form">
-          <div>
-            ${question.answers.map((answer, ind) => `
-              <div>
-                <input type="radio" name="answer" id="answer-${ind}" value="${answer}" />
-                <label for="answer-${ind}">${answer}</label>
-              </div>
-            `).join('')}
-          </div>
-          <div>
-            <input type="submit" />
-          </div>
-        </form>
-      </div>
-`;
-  }
-
-  _generateFeedback() {
-    const current = this.model.getCurrentQuestion();
-    let html = '';
-    if (current.getAnswerStatus() === 1) {
-      html +=  `
-        <div>
-          <p>
-            Great job! You got the right answer.
-          </p>
-          <p>
-            ${current.correctAnswer}
-          </p>
-        </div>
-`;
-    } else {
-      html += `
-        <div>
-          <p>
-            Sorry, that's incorrect.
-          </p>
-          <p>
-            You answered: ${current.userAnswer} 
-          </p>
-          <p>
-            The correct answer is:
-          </p>
-          <p>
-            ${current.correctAnswer}
-          </p>
-        </div>
-      `;
-    }
-
-    html += `
-      <div>
-        <button class="continue">Continue</button>
-      </div>
-    `;
-    return html;
-  }
-
-  _generateOutro() {
-    let highText = '';
-    if (this.model.isNewHighScore()) {
-      highText = `
-        <p>
-          You have a new high score!
-        </p>
-      `;
-    }
-
-    return `
-      <div>
-        <p>
-          Thanks for playing!
-        </p>
-        ${highText}
-        <div>
-          <button class="start-quiz">Play Again</button>
-        </div>
-      </div>
-`;
-  }
-
+  // TASK: This is where you must return an HTML template
   template() {
     let html;
-    const currentQuestion = this.model.getCurrentQuestion();
-    const answerStatus = currentQuestion && currentQuestion.getAnswerStatus();
-    
-    if (this.model.asked.length === 0) {
-      // Quiz has not started
+
+    if (this.model.active) {
       html = this._generateIntro();
-    } else if (this.model.active && answerStatus === -1) {
-      // Quiz is active and question unanswered
-      html = this._generateQuestion();
-    } else if (this.model.active && answerStatus !== -1) {
-      // Quiz is active and question answered
-      html = this._generateFeedback();
-    } else {
-      // Quiz is finished
-      html = this._generateOutro();
     }
+    // Add many more cases here
+
     return html;
   }
 
+  // TASK: An event handler example that's registered in getEvents()
   handleStart() {
     this.model.startNewGame();
   }
-
-  handleAnswerQuestion(e) {
-    e.preventDefault();
-    const userAnswer = e.target.answer.value;
-    this.model.answerQuestion(userAnswer);
-  }
-
-  handleContinue() {
-    this.model.nextQuestion();
-  }
-
 }
 
 export default QuizDisplay;
