@@ -1,6 +1,6 @@
-/* global Model */
+import Model from './lib/Model';
 
-class Question extends Model {         //eslint-disable-line no-unused-vars
+class Question extends Model {
 
   // Receives API questionData, structures data for Question model 
   constructor(questionData) {
@@ -50,3 +50,5 @@ class Question extends Model {         //eslint-disable-line no-unused-vars
   }
 
 }
+
+export default Question;

@@ -1,5 +1,6 @@
 import Model from './lib/Model';
 import TriviaApi from './TriviaApi';
+import Question from './Question';
 
 class Quiz extends Model {
 
@@ -133,3 +134,5 @@ class Quiz extends Model {
     return false;
   }
 }
+
+export default Quiz;
