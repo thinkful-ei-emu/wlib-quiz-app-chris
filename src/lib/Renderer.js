@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 // eslint-disable-next-line no-unused-vars
 const Renderer = function(){
   const renderers = [];

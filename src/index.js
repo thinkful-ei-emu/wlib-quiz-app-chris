@@ -1,4 +1,5 @@
 /* global Quiz, QuizDisplay, QuizStatus */
+import $ from 'jquery';
 
 let q, quizDisplay, quizStatus;    // eslint-disable-line no-unused-vars
 
