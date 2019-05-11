@@ -1,12 +1,10 @@
-import Model from './lib/Model';
+import Question from './Question';
 
-class Quiz extends Model {
+class Quiz {
 
   static DEFAULT_QUIZ_LENGTH = 2;
 
   constructor() {
-    super();
-
     // Array of Question instances
     this.unasked = [];
     // Array of Question instances
