@@ -22,10 +22,13 @@ class Quiz {
   startGame() {
     const triviaApi = new TriviaApi();
     triviaApi.fetchQuestions(Quiz.DEFAULT_QUIZ_LENGTH)
-      .then(data => this.unasked.push(...data.results))
+      .then(data => {
+        data.results.forEach(questionData => {
+          this.unasked.push(new Question(questionData));
+          this.active = true;
+        });
+      })
       .catch(err => console.log(err.message));
-
-    this.active = true;
   }
 }
 
