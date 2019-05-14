@@ -9,6 +9,10 @@ class Renderer {
       throw new Error('Must instantiate with (1) instance of Model and (2) valid DOM selector. If using super(), make sure to pass those parameters in.');
     }
 
+    this.model = model;
+    this.model.bindView(this);
+    this.$el = $(el);
+
     if (
       !this.template || 
       typeof this.template !== 'function' ||
@@ -16,10 +20,6 @@ class Renderer {
     ) {
       throw new Error('Classes that inherit Renderer REQUIRE a template() function that returns an HTML string');
     }
-
-    this.model = model;
-    this.model.bindView(this);
-    this.$el = $(el);
 
     if (this.getEvents) {
       const events = this.getEvents();
