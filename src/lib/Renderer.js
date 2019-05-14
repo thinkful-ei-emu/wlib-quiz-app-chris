@@ -1,9 +1,22 @@
 import $ from 'jquery';
+import Model from './Model';
 
 const renderers = [];
 
 class Renderer {
   constructor(model, el) {
+    if (!model || !(model instanceof Model) || !el) {
+      throw new Error('Must instantiate with (1) instance of Model and (2) valid DOM selector. If using super(), make sure to pass those parameters in.');
+    }
+
+    if (
+      !this.template || 
+      typeof this.template !== 'function' ||
+      typeof this.template() !== 'string'
+    ) {
+      throw new Error('Classes that inherit Renderer REQUIRE a template() function that returns an HTML string');
+    }
+
     this.model = model;
     this.model.bindView(this);
     this.$el = $(el);
