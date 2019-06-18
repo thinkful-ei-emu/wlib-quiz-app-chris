@@ -14,7 +14,7 @@ class QuizStatus extends Renderer {
       <div class="current-status">
       <span class="current-score">Score: ${this.model.score}</span>
       <span class="current-highscore">High Score: 0</span>
-      <span class="current-progress">Progress: ${x}</span>
+      <span class="current-progress">Progress: ${x} of 5</span>
       </div>
     `;
   }

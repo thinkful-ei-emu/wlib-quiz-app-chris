@@ -29,11 +29,9 @@ class QuizDisplay extends Renderer {
 
   _generateQuestion() {
     let question = '';
-    console.log(this.model.asked[0].correctAnswer);
     for (let i = 0; i < this.model.asked[0].answers.length; i++) {
-      question += `<input type="radio" name="questions"> ${this.model.asked[0].answers[i]}<br>`;
+      question += `<input type="radio" name="questions" class="js-questions"> ${this.model.asked[0].answers[i]}<br>`;
     }
-    console.log(question);
 
     return `
       <div>
@@ -41,7 +39,7 @@ class QuizDisplay extends Renderer {
           ${this.model.asked[0].text}
         </p>
         <p>
-          <form>
+          <form class="js-questions-form">
            ${question}
           </form>
         </p>
@@ -52,45 +50,35 @@ class QuizDisplay extends Renderer {
       `;
   }
 
-  _generateCorrectAnswer() {
+  _generateAnswer() {
+    let text = '';
+    if (this.model.userAnswer === this.model.correctAnswer) {
+      text = `
+        <p>
+            You got it!
+        </p>
+        `;
+    }
+    else {
+      text = `
+        <p>
+            Sorry, that's incorrect.
+        </p>
+        <p>
+            You answered:
+        </p>
+        <p>
+            ${this.model.asked[0].userAnswer}
+        </p>`;
+    }
     return `
       <div>
         <p>
           ${this.model.asked[0].text}
         </p>
+        ${text}
         <p>
-          You got it!
-        </p>
-        <p>
-          The correct answer was:
-        </p>
-        <p>
-          ${this.model.asked[0].correctAnswer}
-        </p>
-      </div>
-      <div class="buttons">
-        <button class=".next-question">Continue</button>
-      </div>
-      `;
-  }
-
-  _generateIncorrectAnswer() {
-    return `
-      <div>
-        <p>
-          ${this.model.asked[0].text}
-        </p>
-        <p>
-          Sorry, that's incorrect.
-        </p>
-        <p>
-          You answered:
-        </p>
-        <p>
-          ${this.model.asked[0].userAnswer}
-        </p>
-        <p>
-          The correct answer was:
+            The correct answer was:
         </p>
         <p>
           ${this.model.asked[0].correctAnswer}
@@ -129,27 +117,20 @@ class QuizDisplay extends Renderer {
       html = this._generateIntro();
     }
 
-    else if (this.model.asked.length > 0) {
-      // Quiz has started
-      html = this._generateQuestion();
-    }
-
-    else if (this.model.asked.length > 0) {
-      // Quiz has started
-      html = this._generateCorrectAnswer();
-    }
-
-    else if (this.model.asked.length > 0) {
-      // Quiz has started
-      html = this._generateIncorrectAnswer();
-    }
+    // else if (this.model.answerCurrentQuestion(this.model.userAnswer)) {
+    //   // Quiz has started
+    //   html = this._generateAnswer();
+    // }
 
     else if (!this.model.active) {
       // Quiz has started
       html = this._generateOutro();
     }
-
-
+        
+    else {
+      // Quiz has started
+      html = this._generateQuestion();
+    }
     
     return html;
   }
@@ -159,7 +140,10 @@ class QuizDisplay extends Renderer {
   }
 
   handleSubmit() {
-    this.model.answerCurrentQuestion();
+    this.model.userAnswer = $('input[name="questions"]:checked').val();
+    console.log(this.model.userAnswer);
+    this.model.answerCurrentQuestion(this.model.userAnswer);
+    this.model.update();
   }
 
   handleContinue() {
