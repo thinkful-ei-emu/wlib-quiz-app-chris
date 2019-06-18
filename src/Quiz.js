@@ -1,11 +1,13 @@
 import Question from './Question';
 import TriviaApi from './TriviaApi';
+import Model from './lib/Model';
 
-class Quiz {
+class Quiz extends Model {
 
   static DEFAULT_QUIZ_LENGTH = 2;
 
   constructor() {
+    super();
     // Array of Question instances
     this.unasked = [];
     // Array of Question instances
@@ -32,9 +34,10 @@ class Quiz {
           this.unasked.push(new Question(questionData));
           this.nextQuestion();
           this.active = true;
+          this.update();
         });
       })
-      .catch(err => console.log(err.message));
+      .catch(err => console.log(err.message));      
   }
 
   getCurrentQuestion() {
@@ -49,10 +52,11 @@ class Quiz {
 
     this.asked.unshift(this.unasked.pop());
     return true;
+    
   }
 
   increaseScore() {
-    this.score++;    
+    this.score++;
   }
 
   answerCurrentQuestion(answerText) {
