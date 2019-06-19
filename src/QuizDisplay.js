@@ -14,10 +14,10 @@ class QuizDisplay extends Renderer {
   _generateIntro() {
     return `
       <div>
-        <p>
+        <p class="title-text">
           Welcome to the Trivia Quiz
         </p>
-        <p>
+        <p class="normal-text">
           Test your smarts and see how high you can score!
         </p>
       </div>
@@ -30,12 +30,12 @@ class QuizDisplay extends Renderer {
   _generateQuestion() {
     let question = '';
     for (let i = 0; i < this.model.asked[0].answers.length; i++) {
-      question += `<input type="radio" name="questions" class="js-questions" value="${this.model.asked[0].answers[i]}"> ${this.model.asked[0].answers[i]}<br>`;
+      question += `<input type="radio" name="questions" class="js-questions radio-questions" value="${this.model.asked[0].answers[i]}"> ${this.model.asked[0].answers[i]}<br>`;
     }
 
     return `
       <div>
-        <p>
+        <p class="question-text">
           ${this.model.asked[0].text}
         </p>
         <form class="js-questions-form">
@@ -52,33 +52,33 @@ class QuizDisplay extends Renderer {
     let text = '';
     if (this.model.getCurrentQuestion().getAnswerStatus() === 1) {
       text = `
-        <p>
+        <p class="normal-text">
             You got it!
         </p>
         `;
     }
     else {
       text = `
-        <p>
+        <p class="normal-text">
             Sorry, that's incorrect.
         </p>
-        <p>
+        <p class="normal-text">
             You answered:
         </p>
-        <p>
+        <p class="incorrect-text">
             ${this.model.asked[0].userAnswer}
         </p>`;
     }
     return `
       <div>
-        <p>
+        <p class="question-text">
           ${this.model.asked[0].text}
         </p>
         ${text}
-        <p>
+        <p class="normal-text">
             The correct answer was:
         </p>
-        <p>
+        <p class="correct-text">
           ${this.model.asked[0].correctAnswer}
         </p>
       </div>
@@ -96,13 +96,13 @@ class QuizDisplay extends Renderer {
     }
     return `
       <div>
-        <p>
+        <p class="normal-text">
           Good job!
         </p>
-        <p>
+        <p class="normal-text">
           Your final score was ${this.model.score} out of 5.
         </p>
-        <p>
+        <p class="highscore-text">
           ${newHighScore}
         </p>
       </div>

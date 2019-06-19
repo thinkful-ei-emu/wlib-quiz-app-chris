@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #03FFBC;
+}
+
+.status {
+    background-color: #FFD28E;
+    padding: 20px 0 20px 0;
+    font-family: 'Concert One', cursive;
+    font-size: 17px;
+    color: #3117FF;
+}
+
+.current-status {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;    
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10% 5% 0 5%;
+    font-size: 20px;
+}
+
+p {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+button{
+    border: 2px solid #3117FF;
+    background-color: #FFD28E;
+    color: #3117FF;
+    padding: 14px 28px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #BEE88B;
+    color: #EB1550;
+  }
+
+.js-questions-form {
+    text-align: center;
+}
+
+.radio-questions {
+    margin: 4% 0 4% 0;
+    color: #FFD28E;
+    text-shadow: 
+        -1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.title-text {
+    font-family: 'Luckiest Guy', cursive;
+    color: #3117FF;
+}
+
+.normal-text, .question-text {
+    color: #FFD28E;
+    text-shadow: 
+        -1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.normal-text {    
+    font-family: 'Concert One', cursive;
+}
+
+.question-text {
+    font-family: 'Boogaloo', cursive;
+}
+
+.incorrect-text, .correct-text {
+    font-family: 'Concert One', cursive;
+    font-size: 30px;
+    text-shadow: 
+        -1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.incorrect-text {
+    color: #EB1550;
+}
+
+.correct-text {
+    color: #CBE876;
+}
+
+.highscore-text {
+    font-family: 'Luckiest Guy', cursive;
+    color: #3117FF;
+}
+

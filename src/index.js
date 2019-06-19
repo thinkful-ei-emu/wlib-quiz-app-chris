@@ -1,7 +1,11 @@
 import $ from 'jquery';
+import 'normalize.css';
+
 import Quiz from './Quiz';
 import QuizDisplay from './QuizDisplay';
 import QuizStatus from './QuizStatus';
+
+import './index.css';
 
 function main() {
   const quiz = new Quiz();
