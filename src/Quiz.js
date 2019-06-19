@@ -4,7 +4,7 @@ import Model from './lib/Model';
 
 class Quiz extends Model {
 
-  static DEFAULT_QUIZ_LENGTH = 2;
+  static DEFAULT_QUIZ_LENGTH = 5;
 
   constructor() {
     super();
@@ -37,7 +37,8 @@ class Quiz extends Model {
           this.update();
         });
       })
-      .catch(err => console.log(err.message));      
+      .catch(err => console.log(err.message)); 
+      this.update();     
   }
 
   getCurrentQuestion() {
@@ -56,7 +57,7 @@ class Quiz extends Model {
   }
 
   increaseScore() {
-    this.score++;
+    this.score++;    
   }
 
   answerCurrentQuestion(answerText) {
@@ -73,7 +74,7 @@ class Quiz extends Model {
     if (currentQ.getAnswerStatus() === 1) {
       this.increaseScore();
     }
-    
+
     return true;
   }
 }
