@@ -30,7 +30,7 @@ class QuizDisplay extends Renderer {
   _generateQuestion() {
     let question = '';
     for (let i = 0; i < this.model.asked[0].answers.length; i++) {
-      question += `<input type="radio" name="questions" class="js-questions radio-questions" value="${this.model.asked[0].answers[i]}"> ${this.model.asked[0].answers[i]}<br>`;
+      question += `<input type="radio" name="questions" class="js-questions" value="${this.model.asked[0].answers[i]}"><span class="radio-questions"> ${this.model.asked[0].answers[i]}</spaan><br>`;
     }
 
     return `
@@ -91,7 +91,7 @@ class QuizDisplay extends Renderer {
   _generateOutro() {
     let highScore = 0;
     let newHighScore = '';
-    if (this.model.score > highScore) {
+    if (this.model.score > this.model.highScore) {
       newHighScore = 'That\'s a new high score!';
     }
     return `
@@ -161,10 +161,11 @@ class QuizDisplay extends Renderer {
 
   handleNewGame(){
     this.model.asked = [];
-    console.log(this.model.score);
+    // console.log(this.model.score);
     let x = this.model.score;
+    this.model.highScore = x > this.model.highScore ? x : this.model.highScore;
     this.model.scoreHistory.push(x);
-    console.log(this.model.scoreHistory);
+    // console.log(this.model.scoreHistory);
     this.model.update();
   }
 }

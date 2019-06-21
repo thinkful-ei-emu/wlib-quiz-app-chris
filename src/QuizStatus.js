@@ -4,11 +4,7 @@ class QuizStatus extends Renderer {
   template() {
     // return some HTML here, utilizing `this.model`
     let progress;
-    let highScore = 0;
-    if (Math.max(this.model.scoreHistory) > 0){
-      highScore = Math.max(...this.model.scoreHistory);
-    }
-
+    const {score, highScore} = this.model;
     if (this.model.asked.length === 0){
       progress = 'Inactive';
     } else {
@@ -17,7 +13,7 @@ class QuizStatus extends Renderer {
 
     return `
       <div class="current-status">
-      <span class="status-item current-score">Score: ${this.model.score}</span>
+      <span class="status-item current-score">Score: ${score}</span>
       <span class="status-item current-highscore">High Score: ${highScore}</span>
       <span class="status-item current-progress">Progress: ${progress}</span>
       </div>

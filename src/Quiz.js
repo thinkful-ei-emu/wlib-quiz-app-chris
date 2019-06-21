@@ -4,7 +4,7 @@ import Model from './lib/Model';
 
 class Quiz extends Model {
 
-  static DEFAULT_QUIZ_LENGTH = 5;
+  static DEFAULT_QUIZ_LENGTH = 2;
 
   constructor() {
     super();
@@ -17,6 +17,7 @@ class Quiz extends Model {
     // TASK: Add more props here per the exercise
     this.score = 0;
     this.scoreHistory = [];
+    this.highScore = 0;
 
   }
 

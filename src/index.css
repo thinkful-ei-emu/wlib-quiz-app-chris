@@ -24,7 +24,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10% 5% 0 5%;
+    margin: 0 5% 0 5%;
     font-size: 20px;
 }
 
@@ -52,9 +52,14 @@ button:hover {
     text-align: center;
 }
 
-.radio-questions {
+.js-questions {
     margin: 4% 0 4% 0;
+}
+
+.radio-questions {
     color: #FFD28E;
+    font-size: 25px;
+    font-family: 'Boogaloo', cursive;
     text-shadow: 
         -1px -1px 0 #000,
 		1px -1px 0 #000,
@@ -65,6 +70,7 @@ button:hover {
 .title-text {
     font-family: 'Luckiest Guy', cursive;
     color: #3117FF;
+    font-size: 40px;
 }
 
 .normal-text, .question-text {
@@ -78,15 +84,17 @@ button:hover {
 
 .normal-text {    
     font-family: 'Concert One', cursive;
+    font-size: 25px;
 }
 
 .question-text {
     font-family: 'Boogaloo', cursive;
+    font-size: 30px;
 }
 
 .incorrect-text, .correct-text {
     font-family: 'Concert One', cursive;
-    font-size: 30px;
+    font-size: 55px;
     text-shadow: 
         -1px -1px 0 #000,
 		1px -1px 0 #000,
@@ -105,5 +113,12 @@ button:hover {
 .highscore-text {
     font-family: 'Luckiest Guy', cursive;
     color: #3117FF;
+    font-size: 40px;
 }
 
+@media only screen and (min-width: 600px) {
+    .status {
+        font-size: 25px;
+        padding: 10px 0 10px 0;
+    }
+}
